@@ -42,7 +42,9 @@ async def validate_cart(request:Request,items: List[OrderItem], db_pool: asyncpg
             product = services.get_inventory(product_id=item.product_id)
             if not product or product.data.get("stock_available") < item.quantity:
                 raise HTTPException(status_code=400, detail=f"Product {item.product_id} is out of stock")
-    return {"message": "Cart is valid"}
+    
+    return JSONResponse(content={"msg": "Cart is valid"}, status_code=200)        
+
 
 @router.post("/cart/checkout")
 async def checkout(request:Request,order: OrderCreate, db_pool: asyncpg.pool.Pool=Depends(get_pool)):
@@ -76,4 +78,4 @@ async def checkout(request:Request,order: OrderCreate, db_pool: asyncpg.pool.Poo
         # Send order confirmation email (this would be a call to an email service)
         await services.send_order_confirmation_email(order_id, order.customer_id)
 
-        return {"order_id": order_id}
+        return JSONResponse(content={"order_id": order_id}, status_code=200) 
