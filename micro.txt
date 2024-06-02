@@ -1,0 +1,19 @@
+best practices for microservices:
+
+1. Split of services within an application should be based n bussiness needs.
+2. Each service should be doing only one job
+3. Each service should be self contained and independent.
+4. Each service should have its own versioning.
+
+
+Communication between microservices:
+1. Through Http request and response
+2. Through message broker(pub/sub model)
+3. Communication via service mesh.
+
+
+Our application currently needs to have three services:
+user authentication:
+product management:
+order processing:
+

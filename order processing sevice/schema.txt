@@ -1,0 +1,25 @@
+Customer Table: This table stores information about customers.
+
+customer_id (Primary Key)
+name
+email
+address
+Item Table: This table stores information about items available for purchase.
+
+item_id (Primary Key)
+name
+price
+quantity_available
+Order Table: This table stores information about orders.
+
+order_id (Primary Key)
+customer_id (Foreign Key referencing Customer Table)
+order_date
+status (e.g., pending, shipped, delivered)
+OrderItem Table: This table stores the items associated with each order.
+
+order_item_id (Primary Key)
+order_id (Foreign Key referencing Order Table)
+item_id (Foreign Key referencing Item Table)
+quantity
+price
